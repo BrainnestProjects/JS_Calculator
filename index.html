@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,12 +8,13 @@
     <title>Calculator</title>
     <link rel="stylesheet" href="./styles/style.css">
 </head>
+
 <body>
     <section class="calculator">
-    <form>
-        <input type="text" id="display" class="screen" value="0" disabled />
-    </form>
-    <div id="container" class="buttons">
+        <form>
+            <input type="text" id="display" class="screen calculator-screen display" value="0" disabled />
+        </form>
+        <div id="container" class="buttons">
             <button type="button" class="btn clear" value="clear">AC</button>
             <button type="button" class="btn sign" value="sign">+/-</button>
             <button type="button" class="btn percent" value="percent">%</button>
@@ -31,10 +33,11 @@
             <button type="button" class="btn operator" value="+">+</button>
             <button type="button" id="zero" class="btn operand" value="0">0</button>
             <button type="button" class="btn decimal" value=".">.</button>
-            <button type="button" class="btn equals" value="=">=</button>
+            <button type="button" class="btn operator equals" value="=">=</button>
         </div>
     </section>
-    
+
     <script src="./script/script.js"></script>
 </body>
+
 </html>
