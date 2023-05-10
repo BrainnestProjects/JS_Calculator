@@ -1,5 +1,6 @@
 const display = document.querySelector('.calculator-screen');
 const keys = document.querySelector('.buttons');
+const smallFullDisplay= document.querySelector('.small-full-display')
 
 const calculator = {
   displayValue: '0',
@@ -32,12 +33,13 @@ function multiplyNumbers(num1, num2)
 function divideNumbers(num1, num2)
 {
   if(num2 === 0) {
-    calculator.displayValue ='0';
+    calculator.displayValue ='Can\'t divide by 0';
     calculator.waitingForSecondOperand = false;
     updateDisplay();
+    resetCalculator();
   }
   
- else  return num1 / num2;
+ else return num1 / num2;
 }
 
 function inputPercent() {

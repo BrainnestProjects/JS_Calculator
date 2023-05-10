@@ -34,8 +34,28 @@ body{
     border: 10px solid rgb(47, 61, 72);
 }
 
-form input {
-    height: 10rem;
+
+form{
+    border: 4px solid black;
+}
+
+form input{
+    height: 6rem;
+    width: 100%;
+    font-size: 2.5rem;
+    padding: 1rem;
+    color:var(--text-coor);
+    background-color: rgb(209, 202, 202);
+    text-align: right;
+    pointer-events: none;    
+}
+
+.small-full-display{
+    height: 5rem;
+    font-size: 1.5rem;
+}
+/* form input {
+    height: 8rem;
     width: 100%;
     border: 4px solid black;
     font-size: 3rem;
@@ -44,7 +64,7 @@ form input {
     background-color: rgb(209, 202, 202);
     text-align: right;
     pointer-events: none;    
-}
+} */
 
 .buttons{
     display: flex;
