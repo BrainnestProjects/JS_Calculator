@@ -31,8 +31,8 @@ function multiplyNumbers(num1, num2)
 
 function divideNumbers(num1, num2)
 {
-  if(num2 == 0) {
-    calculator.displayValue="Error";
+  if(num2 === 0) {
+    calculator.displayValue ='0';
     calculator.waitingForSecondOperand = false;
     updateDisplay();
   }

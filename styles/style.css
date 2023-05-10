@@ -5,6 +5,9 @@
     --background-operator: rgb(245, 146, 60);
     --background-operand: rgb(33, 124, 126);
     --background-button:rgb(0, 89, 255);
+    --focus-active-operators: #ffc183;
+    --active-number-decimal:#33b9bb;
+    --active-sign-percent:rgb(123, 189, 255);
     font-family: monospace;
 }
 *{
@@ -79,4 +82,25 @@ button {
 
 #zero{
     flex-grow: 0.8;
+}
+.operator:focus {
+    background-color: var(--focus-active-operators)
+}
+.equals:active {
+    background-color: var(--focus-active-operators)
+}
+.operand:active {
+    background-color: var(--active-number-decimal)
+}
+.decimal:active {
+    background-color: var(--active-number-decimal)
+}
+.clear:active {
+    background-color: var(--active-sign-percent)
+}
+.sign:active {
+    background-color: var(--active-sign-percent)
+}
+.percent:active {
+    background-color: var(--active-sign-percent)
 }
