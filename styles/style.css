@@ -106,8 +106,8 @@ button {
 .operator:focus {
     background-color: var(--focus-active-operators)
 }
-.equals:active {
-    background-color: var(--focus-active-operators)
+.equals:focus{
+    background-color: var(--active-number-decimal);
 }
 .operand:active {
     background-color: var(--active-number-decimal)
