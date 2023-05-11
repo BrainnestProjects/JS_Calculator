@@ -18,7 +18,7 @@
 
 body{
     min-height: 100vh;
-    background-color: var(--background-colorPageolor);
+    background-color: var(--background-colorPage);
     display: flex;
     justify-content: center;
     align-items:center;
@@ -96,7 +96,7 @@ button {
     background-color: var(--background-operator);
 }
 
-.operand,.equals, .decimal{
+.operand, .equals, .decimal{
     background-color: var(--background-operand);
 }
 /* 
@@ -106,11 +106,12 @@ button {
 .operator:focus {
     background-color: var(--focus-active-operators)
 }
-.equals:active {
-    background-color: var(--focus-active-operators)
-}
+
 .operand:active {
     background-color: var(--active-number-decimal)
+}
+.equals:focus{
+    background-color: var(--active-number-decimal);
 }
 .decimal:active {
     background-color: var(--active-number-decimal)
@@ -123,4 +124,7 @@ button {
 }
 .percent:active {
     background-color: var(--active-sign-percent)
+}
+.equals:active {
+    background-color: var(--active-number-decimal)
 }
