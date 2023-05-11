@@ -56,6 +56,11 @@ function inputSign() {
   return;
 }
 
+function inputDelete() {
+  calculator.displayValue = calculator.displayValue.toString().slice(0, -1);
+  return;
+}
+
 function inputDecimal(dot) {
   if (calculator.waitingForSecondOperand === true) {
   	calculator.displayValue = '0.'
@@ -169,6 +174,12 @@ keys.addEventListener('click', (event) => {
 
   if (target.classList.contains('sign')) {
     inputSign();
+    updateDisplay();
+    return;
+  }
+
+  if (target.classList.contains('delete')) {
+    inputDelete();
     updateDisplay();
     return;
   }

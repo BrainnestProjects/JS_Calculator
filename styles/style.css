@@ -88,7 +88,7 @@ button {
 }
 
 
-.clear, .sign, .percent{
+.clear, .sign, .percent, .delete{
     background-color: var(--background-button);
 }
 
@@ -99,10 +99,10 @@ button {
 .operand, .decimal{
     background-color: var(--background-operand);
 }
-
+/* 
 #zero{
     flex-grow: 0.8;
-}
+} */
 .operator:focus {
     background-color: var(--focus-active-operators)
 }
