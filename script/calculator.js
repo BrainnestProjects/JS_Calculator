@@ -50,9 +50,13 @@ function inputPercent() {
 
 
 function inputSign() {
-  calculator.displayValue = (calculator.displayValue * -1);
-  calculator.firstOperand = calculator.displayValue;
+  calculator.displayValue = parseFloat(calculator.displayValue * -1);
+  if(calculator.waitingForSecondOperand)
+  {
+    calculator.firstOperand = parseFloat(calculator.firstOperand * -1);
+  }
   calculator.waitingForSecondOperand = true;
+  console.log(calculator);
   return;
 }
 
@@ -101,7 +105,7 @@ function handleOperator(nextOperator) {
   const inputValue = parseFloat(displayValue);
 
   
-  if (operator && calculator.waitingForSecondOperand)  {
+  if (operator && calculator.waitingForSecondOperand && nextOperator != '=')  {
     calculator.operator = nextOperator;
     return;
   }
