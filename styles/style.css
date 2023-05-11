@@ -92,11 +92,11 @@ button {
     background-color: var(--background-button);
 }
 
-.operator, .equals{
+.operator{
     background-color: var(--background-operator);
 }
 
-.operand, .decimal{
+.operand,.equals, .decimal{
     background-color: var(--background-operand);
 }
 /* 
