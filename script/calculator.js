@@ -142,6 +142,7 @@ function inputSign() {
 
 function inputDelete() {
   calculator.displayValue = calculator.displayValue.toString().slice(0, -1);
+  calculator.firstOperand= +calculator.displayValue;
   return;
 }
 
@@ -268,6 +269,8 @@ keys.addEventListener('click', (event) => {
 
   if (target.classList.contains('decimal')) {
     inputDecimal(target.value);
+    updateSmallFullDisplay();
+    updateDisplay();
     return;
   }
 
@@ -306,4 +309,58 @@ keys.addEventListener('click', (event) => {
   updateDisplay();
   updateSmallFullDisplay();
 });
+window.addEventListener('keydown', (event) => {
+  console.log(event);
+  let opeartors=["+","-","*","/"];
+  let numbers=["0","1","2","3","4","5","6","7","8","9"];
+  
+  const keyTarget = event.key;
+  if(opeartors.includes(keyTarget)){
+    handleOperator(keyTarget);
+    updateSmallFullDisplay();
+    updateDisplay();
+    return;
+  }
+  if(numbers.includes(keyTarget)){
+    inputDigit(keyTarget);
+    updateSmallFullDisplay();
+    updateDisplay();
+    return;
+  }
+  if(keyTarget ==="="){
+    handleOperator(keyTarget);
+    updateSmallFullDisplay();
+    updateDisplay();
+    return;
+  }
+  if(keyTarget===".")
+  {
+    inputDecimal(keyTarget);
+    updateSmallFullDisplay();
+    updateDisplay();
+    return;
+  }
+  if(keyTarget==="Backspace"){
+    inputDelete(); 
+    updateSmallFullDisplay();
+    updateDisplay();
+    return;
+  }
+  if(keyTarget==="Delete"){
+    resetCalculator(); 
+    resetFullDisplay();
+    updateSmallFullDisplay();
+    updateDisplay();
+    return;
+  }
+  if(keyTarget==="%"){
+    keepStatus.percentInput = true;
+    inputPercent(keyTarget);
+    updateSmallFullDisplay();
+    updateDisplay();
+    keepStatus.percentInput = null;
+    return;
+  }
+  });
+  
 
