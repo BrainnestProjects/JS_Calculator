@@ -9,12 +9,86 @@ const calculator = {
   operator: null,
 };
 
+const keepStatus = {
+  signInput : null,
+  percentInput : null
+}
+
 function resetCalculator() {
   calculator.displayValue = '0';
   calculator.firstOperand = null;
   calculator.waitingForSecondOperand = false;
   calculator.operator = null;
   console.log(calculator);
+}
+
+function resetFullDisplay()
+{
+  smallFullDisplay.value = '';
+}
+
+function updateSmallFullDisplay()
+{
+  let firstOperand = 0;
+  if(calculator.firstOperand)
+  {
+    firstOperand =  `${parseFloat(calculator.firstOperand.toFixed(5))}`;
+  }
+   
+  if(calculator.firstOperand === null || calculator.operator === null)
+  {
+    smallFullDisplay.value = calculator.displayValue;
+  }else
+  {
+    if(!calculator.waitingForSecondOperand)
+    {
+      if(keepStatus.signInput || keepStatus.percentInput)
+        {
+          if(calculator.operator != '=')
+          {
+            smallFullDisplay.value = firstOperand + calculator.operator + calculator.displayValue;
+          }else{
+            smallFullDisplay.value = calculator.displayValue;
+          }
+        }else{
+          if(calculator.operator != '=')
+          {
+            smallFullDisplay.value = firstOperand + calculator.operator + calculator.displayValue;
+          }else if(!calculator.waitingForSecondOperand)
+          {
+            smallFullDisplay.value = calculator.displayValue; // handled dot input
+          }
+        }
+    }else{
+      if(calculator.operator === '=')
+      {
+        if(keepStatus.signInput || keepStatus.percentInput)
+        {
+          smallFullDisplay.value = calculator.displayValue;
+        }else{
+          if(smallFullDisplay.value === '')
+          {
+            smallFullDisplay.value = ''; 
+          }else{
+            if(!smallFullDisplay.value.includes('='))
+            {
+             smallFullDisplay.value = smallFullDisplay.value + '=' + firstOperand;
+            }
+          }
+        }
+      }else{
+        if(keepStatus.signInput)
+        {
+          smallFullDisplay.value = firstOperand + calculator.operator + '(' + calculator.displayValue + ')';
+        }else{
+          smallFullDisplay.value = firstOperand + calculator.operator;
+        }
+      }
+      
+    }
+    
+  }
+  
 }
 
 function addNumbers(num1, num2){
@@ -37,6 +111,7 @@ function divideNumbers(num1, num2)
     calculator.waitingForSecondOperand = false;
     updateDisplay();
     resetCalculator();
+    resetFullDisplay();
   }
   
  else return num1 / num2;
@@ -53,7 +128,12 @@ function inputSign() {
   calculator.displayValue = parseFloat(calculator.displayValue * -1);
   if(calculator.waitingForSecondOperand)
   {
-    calculator.firstOperand = parseFloat(calculator.firstOperand * -1);
+    if(calculator.firstOperand === null)
+    {
+      calculator.firstOperand = calculator.displayValue;
+    }else{
+      calculator.firstOperand = parseFloat(calculator.firstOperand * -1);
+    }
   }
   calculator.waitingForSecondOperand = true;
   console.log(calculator);
@@ -182,6 +262,7 @@ keys.addEventListener('click', (event) => {
   if (target.classList.contains('operator')) {
     handleOperator(target.value);
     updateDisplay();
+    updateSmallFullDisplay();
     return;
   }
 
@@ -191,29 +272,38 @@ keys.addEventListener('click', (event) => {
   }
 
   if (target.classList.contains('percent')) {
+    keepStatus.percentInput = true;
     inputPercent(target.value);
+    updateSmallFullDisplay();
     updateDisplay();
+    keepStatus.percentInput = null;
     return;
   }
 
   if (target.classList.contains('sign')) {
+    keepStatus.signInput = true;
     inputSign();
     updateDisplay();
+    updateSmallFullDisplay();
+    keepStatus.signInput = null;
     return;
   }
 
   if (target.classList.contains('delete')) {
-    inputDelete();
+    inputDelete(); 
+    updateSmallFullDisplay();
     updateDisplay();
     return;
   }
 
   if (target.classList.contains('clear')) {
     resetCalculator();
+    resetFullDisplay();
     updateDisplay();
     return;
   }
   inputDigit(target.value);
   updateDisplay();
+  updateSmallFullDisplay();
 });
 
