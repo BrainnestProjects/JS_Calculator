@@ -124,24 +124,44 @@ function handleOperator(nextOperator) {
   console.log(calculator);
 }
 
-
 function operate(firstOperand, secondOperand, operator) {
   let result;
-  if (operator === '+') {
-    result = addNumbers(firstOperand, secondOperand);
-  } else if (operator === '-') {
-    result = substractNumbers(firstOperand, secondOperand);
-  } else if (operator === '*') {
-    result = multiplyNumbers(firstOperand, secondOperand);
-  } else if (operator === '/') {
-    result = divideNumbers(firstOperand, secondOperand);
-  }
-  else{
-    result = secondOperand;
-  }
 
+  switch(operator){
+    case "+" :
+      result = addNumbers(firstOperand, secondOperand);
+      break;
+    case "-":
+      result = substractNumbers(firstOperand, secondOperand);
+      break;
+    case "*":
+        result = multiplyNumbers(firstOperand, secondOperand);
+      break;
+    case "/":
+      result = divideNumbers(firstOperand, secondOperand);
+      break;
+      default:
+        result = secondOperand;
+  }
   return result;
 }
+// function operate(firstOperand, secondOperand, operator) {
+//   let result;
+//   if (operator === '+') {
+//     result = addNumbers(firstOperand, secondOperand);
+//   } else if (operator === '-') {
+//     result = substractNumbers(firstOperand, secondOperand);
+//   } else if (operator === '*') {
+//     result = multiplyNumbers(firstOperand, secondOperand);
+//   } else if (operator === '/') {
+//     result = divideNumbers(firstOperand, secondOperand);
+//   }
+//   else{
+//     result = secondOperand;
+//   }
+
+//   return result;
+// }
 
 function updateDisplay() {
   // update the value of the element with the contents of `displayValue`
