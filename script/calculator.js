@@ -311,8 +311,8 @@ keys.addEventListener('click', (event) => {
 });
 window.addEventListener('keydown', (event) => {
   console.log(event);
-  let opeartors=["+","-","*","/"];
-  let numbers=["0","1","2","3","4","5","6","7","8","9"];
+  const opeartors=["+","-","*","/"];
+  const numbers=["0","1","2","3","4","5","6","7","8","9"];
   
   const keyTarget = event.key;
   if(opeartors.includes(keyTarget)){
