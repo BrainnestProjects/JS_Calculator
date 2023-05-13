@@ -11,7 +11,8 @@ const calculator = {
 
 const keepStatus = {
   signInput: null,
-  percentInput: null
+  percentInput: null,
+  deleteInput : null
 }
 
 /**
@@ -66,8 +67,11 @@ function updateSmallFullDisplay() {
           if (smallFullDisplay.value === '') {
             smallFullDisplay.value = '';
           } else {
-            if (!smallFullDisplay.value.includes('=')) {
-              smallFullDisplay.value = smallFullDisplay.value + '=' + firstOperand;
+            if(keepStatus.deleteInput) { // Handled backspace input from calculator
+              smallFullDisplay.value = ''; 
+              smallFullDisplay.value = calculator.displayValue;    
+            }else if(!smallFullDisplay.value.includes('=')){
+             smallFullDisplay.value = smallFullDisplay.value + '=' + firstOperand;
             }
           }
         }
@@ -247,22 +251,6 @@ function operate(firstOperand, secondOperand, operator) {
   return result;
 }
 
-// function operate(firstOperand, secondOperand, operator) {
-//   let result;
-//   if (operator === '+') {
-//     result = addNumbers(firstOperand, secondOperand);
-//   } else if (operator === '-') {
-//     result = substractNumbers(firstOperand, secondOperand);
-//   } else if (operator === '*') {
-//     result = multiplyNumbers(firstOperand, secondOperand);
-//   } else if (operator === '/') {
-//     result = divideNumbers(firstOperand, secondOperand);
-//   }
-//   else{
-//     result = secondOperand;
-//   }
-//   return result;
-// }
 
 function updateDisplay() {
   // update the value of the element with the contents of `displayValue`
@@ -318,9 +306,11 @@ keys.addEventListener('click', (event) => {
   }
 
   if (target.classList.contains('delete')) {
-    inputDelete();
+    keepStatus.deleteInput = true;
+    inputDelete(); 
     updateSmallFullDisplay();
     updateDisplay();
+    keepStatus.deleteInput = null;
     return;
   }
 
@@ -373,9 +363,11 @@ window.addEventListener('keydown', (event) => {
     return;
   }
   if (keyTarget === "Backspace") {
-    inputDelete();
+    keepStatus.deleteInput = true;
+    inputDelete(); 
     updateSmallFullDisplay();
     updateDisplay();
+    keepStatus.deleteInput = null;
     return;
   }
   if (keyTarget === "Delete") {
